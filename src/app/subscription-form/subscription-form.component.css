@@ -16,7 +16,6 @@ input[type = text], input[type = email] {
     border: none;
     font-size: 13px;
     background-color: var(--primary-color);
-    color: var(--navbar-footer-color);
 }
 
 .subs-text {

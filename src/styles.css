@@ -14,6 +14,13 @@ body {
     color: var(--body-text-color);
 }
 
+input[type = text], input[type = email] {
+    height: 60px;
+    padding-left: 20px;
+    font-size: 13px;
+    width: 100%;
+}
+
 .site-logo {
     padding: 5px 20px;
     border-radius: 20px;
@@ -31,5 +38,13 @@ body {
 }
 
 .bg-theme {
+    background-color: var(--primary-color);
+}
+
+.btn-theme {
+    height: 58px;
+    width: 70%;
+    border: none;
+    font-size: 13px;
     background-color: var(--primary-color);
 }

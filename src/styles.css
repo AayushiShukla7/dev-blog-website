@@ -41,10 +41,19 @@ input[type = text], input[type = email] {
     background-color: var(--primary-color);
 }
 
+.bg-secondary-theme {
+    background-color: var(--secondary-color);
+}
+
+.text-theme-primary {
+    color: var(--primary-color);
+}
+
 .btn-theme {
     height: 58px;
     width: 70%;
     border: none;
     font-size: 13px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
+    color: #FFF !important;
 }

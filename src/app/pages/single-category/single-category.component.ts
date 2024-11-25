@@ -19,11 +19,14 @@ import { FormsModule } from '@angular/forms';
 export class SingleCategoryComponent implements OnInit {
 
   postsArray !: Array<any>;
+  categoryObj: any;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(val => {
+      //console.log(val);
+      this.categoryObj = val;
       this.loadCategoryPost(val);
     });
   }

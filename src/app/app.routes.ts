@@ -12,7 +12,7 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'category/:id',
+        path: 'category/:category/:id',
         component: SingleCategoryComponent
     },
     {

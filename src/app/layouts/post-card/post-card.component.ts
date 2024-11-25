@@ -34,10 +34,9 @@ export class PostCardComponent implements OnInit {
       var parsedData = JSON.parse(dataString);
 
       var test = JSON.stringify(parsedData.data);
-      var data1 = JSON.parse(test); //JSON.parse('{"postImagePath":"http://res.cloudinary.com/de3clglcb/image/upload/v1732064774/Purpose.jpg.jpg"}');
+      var data1 = JSON.parse(test); 
 
-      console.log(data1);
-      //console.log(data1["postImagePath"]);
+      //console.log(data1);
 
       this.dynamicData = data1;
       this.imagePath = data1["postImagePath"];

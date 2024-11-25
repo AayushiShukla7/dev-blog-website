@@ -17,15 +17,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
+  latestPostsArray: Array<any> = [];
   featuredPostsArray: Array<any> = [];
 
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadFeaturedPosts();
+    this.loadLatestPosts();
   }
 
-  loadData() {
+  loadLatestPosts() {
+    this.postsService.loadLatest()
+    .then(res => {
+      //console.log(res);
+      this.latestPostsArray = res;
+    });
+  }
+
+  loadFeaturedPosts() {
     this.postsService.loadFeatured()
     .then(res => {
       //console.log(res);

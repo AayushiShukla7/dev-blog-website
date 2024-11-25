@@ -39,5 +39,25 @@ export class PostsService {
     result.splice(0,1);
     return result;
   }
+
+  async loadCategoryPosts(categoryId: any) {
+    //console.log(categoryId);
+    var result: Array<any> = [{}];
+    const dbInstance = collection(this.firestore, 'posts');
+
+    const q = query(dbInstance, where("category.categoryId", "==", categoryId));  // Fetch category-specific posts
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.docs.length > 0) {
+      querySnapshot.forEach((doc) => {
+        //console.log(doc.id, " => ", doc.data());
+        result.push({ 'id': doc.id, 'data': doc.data()});
+      });
+  
+      result.splice(0,1);
+    }
+    
+    return result;
+  }
   
 }

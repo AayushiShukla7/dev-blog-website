@@ -1,11 +1,14 @@
-import { DatePipe, JsonPipe } from '@angular/common';
+import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-post-card',
   standalone: true,
   imports: [
-    DatePipe
+    DatePipe,
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'

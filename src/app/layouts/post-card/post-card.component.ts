@@ -1,6 +1,7 @@
 import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -8,7 +9,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     DatePipe,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'
@@ -38,14 +40,13 @@ export class PostCardComponent implements OnInit {
 
       //console.log(data1);
 
-      this.dynamicData = data1;
+      this.dynamicData = data1;      
       this.imagePath = data1["postImagePath"];
       this.category = data1["category"].category;
       this.title = data1["title"];
       this.views = data1["views"];
       this.excerpt = data1["excerpt"];
-      this.createdAt = data1["createdAt"].seconds;
-      
+      this.createdAt = data1["createdAt"].seconds;      
     }
   }
 

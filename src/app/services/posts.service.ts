@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, Firestore, getDocs, limit, orderBy, query, where } from '@angular/fire/firestore';
+import { collection, doc, docData, Firestore, getDocs, limit, orderBy, query, where } from '@angular/fire/firestore';
+import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,11 @@ export class PostsService {
     }
     
     return result;
+  }
+
+  loadSinglePostData(postObj: any) {
+    const docInstance = doc(this.firestore, 'posts', postObj.id);
+    return docData(docInstance).pipe(take(1));
   }
   
 }

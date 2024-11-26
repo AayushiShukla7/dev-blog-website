@@ -41,7 +41,7 @@ export class SinglePostComponent implements OnInit {
   loadOnePost(id: any) {
     this.postsService.loadSinglePostData(id)
     .subscribe((res: any) => {
-      //console.log(res);
+      console.log(res);
       this.postData = res;
       
       this.categoryId = this.postData.category.categoryId;

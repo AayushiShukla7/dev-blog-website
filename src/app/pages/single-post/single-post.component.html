@@ -7,7 +7,7 @@
                     <small class="bg-light text-danger text-center"> {{ postData.category.category }} </small>
                     <small class="bg-light text-success text-center mx-2" *ngIf="postData.isFeatured"> Featured </small>
                     <small class="bg-light text-info text-center mx-2"> Views - {{ postData.views }} </small>
-                    <small class="bg-light text-warning text-center mx-2"> LAST UPDATED - {{ postData.createdAt.seconds | date }} </small>
+                    <small class="bg-light text-warning text-center mx-2"> LAST UPDATED - {{ postData.createdAt.seconds*1000 | date }} </small>
 
                     <h1 class="mt-3 mb-3"> {{ postData.title }} </h1>
                     <p [innerHTML]="postData.content"></p>

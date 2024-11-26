@@ -9,6 +9,6 @@
         <h5 class="mt-1"> {{ title }} </h5>
         <p> {{ excerpt }} </p>
 
-        <small class="bg-light text-warning text-center ml-3"> LAST UPDATED - {{ createdAt | date }} </small>
+        <small class="bg-light text-warning text-center ml-3"> LAST UPDATED - {{ createdAt*1000 | date }} </small>
     </div>
 </div>

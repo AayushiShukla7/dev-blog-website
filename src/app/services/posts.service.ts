@@ -10,6 +10,7 @@ export class PostsService {
   constructor(private firestore: Firestore) { }
 
   async loadFeatured() {
+
     var result: Array<any> = [{}];
     const dbInstance = collection(this.firestore, 'posts');
 
@@ -26,6 +27,7 @@ export class PostsService {
   }
 
   async loadLatest() {
+
     var result: Array<any> = [{}];
     const dbInstance = collection(this.firestore, 'posts');
 
@@ -42,7 +44,7 @@ export class PostsService {
   }
 
   async loadCategoryPosts(categoryId: any) {
-    //console.log(categoryId);
+
     var result: Array<any> = [{}];
     const dbInstance = collection(this.firestore, 'posts');
 
@@ -64,6 +66,29 @@ export class PostsService {
   loadSinglePostData(postObj: any) {
     const docInstance = doc(this.firestore, 'posts', postObj.id);
     return docData(docInstance).pipe(take(1));
+  }
+
+  async loadSimilar(categoryId: any, postId: any) {
+    
+    var result: Array<any> = [{}];
+    const dbInstance = collection(this.firestore, 'posts');
+
+    const q = query(dbInstance, where("category.categoryId", "==", categoryId), limit(4));  // Fetch category-specific posts
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.docs.length > 0) {
+      querySnapshot.forEach((doc) => {
+        //console.log(doc.id, " => ", doc.data());
+        
+        if(doc.id != postId.id) {
+          result.push({ 'id': doc.id, 'data': doc.data()});
+        }        
+      });
+  
+      result.splice(0,1);
+    }
+    
+    return result;
   }
   
 }

@@ -20,9 +20,9 @@
         </div>
 
         <div class="col-md-3">
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
+            <div *ngFor="let post of similarPosts">
+                <app-post-card [postData] = "post"></app-post-card>
+            </div>            
         </div>
     </div>
 </div>

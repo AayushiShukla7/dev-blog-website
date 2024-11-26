@@ -24,12 +24,16 @@ import { FormsModule } from '@angular/forms';
 export class SinglePostComponent implements OnInit {
 
   postData: any;
+  similarPosts: Array<any> = [{}];
+  categoryId: any;
+  postId: any;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(val => {
-      this.loadOnePost(val);
+      this.postId = val;
+      this.loadOnePost(val);      
     });
     
   }
@@ -37,8 +41,19 @@ export class SinglePostComponent implements OnInit {
   loadOnePost(id: any) {
     this.postsService.loadSinglePostData(id)
     .subscribe((res: any) => {
-      console.log(res);
+      //console.log(res);
       this.postData = res;
+      
+      this.categoryId = this.postData.category.categoryId;
+      this.loadSimilarPosts(this.categoryId, this.postId);
+    });
+  }
+
+  loadSimilarPosts(catId: any, postId: any) {
+    this.postsService.loadSimilar(catId, postId)
+    .then((res: any) => {
+      //console.log(res);
+      this.similarPosts = res;
     });
   }
 

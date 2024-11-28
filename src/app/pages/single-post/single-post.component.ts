@@ -32,6 +32,9 @@ export class SinglePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(val => {
+      //console.log(val['id']);
+      this.postsService.countViews(val['id']);  // Increment Views Count
+
       this.postId = val;
       this.loadOnePost(val);      
     });
@@ -41,7 +44,7 @@ export class SinglePostComponent implements OnInit {
   loadOnePost(id: any) {
     this.postsService.loadSinglePostData(id)
     .subscribe((res: any) => {
-      console.log(res);
+      //console.log(res);
       this.postData = res;
       
       this.categoryId = this.postData.category.categoryId;

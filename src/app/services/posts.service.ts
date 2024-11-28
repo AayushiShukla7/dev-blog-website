@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, docData, Firestore, getDocs, limit, orderBy, query, where } from '@angular/fire/firestore';
+import { collection, doc, docData, FieldValue, Firestore, getDocs, increment, limit, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
 import { take } from 'rxjs';
 
 @Injectable({
@@ -89,6 +89,21 @@ export class PostsService {
     }
     
     return result;
+  }
+
+  async countViews(postId: any) {
+    const viewsCount = {
+      views: increment(1) 
+    };
+
+    const docInstance = doc(this.firestore, 'posts', postId);
+
+    updateDoc(docInstance, viewsCount).then((docRef) => {
+      console.log('Views Count Updates..!')
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
   
 }

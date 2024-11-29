@@ -6,12 +6,18 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
+    provideHttpClient()
   ]
 };

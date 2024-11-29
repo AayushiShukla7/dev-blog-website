@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import { getDoc } from 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +32,22 @@ export class SubscribersService {
       } );
     });
   }
+
+  async checkSubs(subEmail: any) {
+    var result: any;
+
+    const dbInstance = collection(this.firestore, 'subscribers');
+    const q = query(dbInstance, where("email", "==", subEmail)); 
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      //console.log(doc.id, " => ", doc.data());
+      if(doc.data()['email'] == subEmail) {
+        result = doc;
+      }
+    });
+
+    return result;
+  }
+
 }

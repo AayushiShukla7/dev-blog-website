@@ -29,7 +29,16 @@ export class SubscriptionFormComponent implements OnInit {
       email: subFormVal.email
     }
 
-    this.subscribersService.addSubs(subData);
+    // Prevent Email duplication
+    this.subscribersService.checkSubs(subFormVal.email).then(val => {
+      //console.log(val);
+      if(val == undefined) {
+        this.subscribersService.addSubs(subData);
+      }
+      else {
+        console.log('Email Address is Already in use');
+      }
+    });
   }
 
 }

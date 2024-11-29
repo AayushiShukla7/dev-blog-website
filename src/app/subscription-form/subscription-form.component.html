@@ -4,7 +4,14 @@
             <h3>SUBSCRIPTION FORM</h3>
             <p class="m-auto subs-text"> Stay updated with the latest in fullstack development! Subscribe to the newsletter for insights, tutorials, and updates delivered straight to your inbox—spam-free and full of value. </p>
 
-            <form class="d-flex flex-row mb-5 mt-4" #subForm="ngForm" (ngSubmit)="onSubmit(subForm.value)">
+            <div class="alert alert-danger mt-3" *ngIf="isEmailError">
+                Email is Already in use!
+            </div>
+            <div class="alert alert-info mt-3" *ngIf="isSubscribed">
+                Thank you for subscribing to the newsletter service. Stay tuned for Awesome blog posts...!
+            </div>
+
+            <form class="d-flex flex-row mb-5 mt-4" #subForm="ngForm" (ngSubmit)="onSubmit(subForm.value)" *ngIf="!isSubscribed">
 
                 <div class="form-group col-md-5 my-1 me-2">
                     <input 

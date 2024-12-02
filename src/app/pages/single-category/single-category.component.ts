@@ -40,7 +40,7 @@ export class SingleCategoryComponent implements OnInit {
 
     this.postsService.loadCategoryPosts(id)
     .then(res => {
-      console.log(res);
+      //console.log(res);
       this.postsArray = res;
     });
   }

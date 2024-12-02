@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RobotComponent } from '../../spline/robot/robot.component';
 
 @Component({
   selector: 'app-single-category',
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    PostCardComponent
+    PostCardComponent,
+    RobotComponent
   ],
   templateUrl: './single-category.component.html',
   styleUrl: './single-category.component.css'
@@ -38,7 +40,7 @@ export class SingleCategoryComponent implements OnInit {
 
     this.postsService.loadCategoryPosts(id)
     .then(res => {
-      //console.log(res);
+      console.log(res);
       this.postsArray = res;
     });
   }

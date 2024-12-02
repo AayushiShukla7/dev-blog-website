@@ -56,10 +56,9 @@ export class PostsService {
         //console.log(doc.id, " => ", doc.data());
         result.push({ 'id': doc.id, 'data': doc.data()});
       });
-  
-      result.splice(0,1);
     }
     
+    result.splice(0,1);
     return result;
   }
 
@@ -99,7 +98,7 @@ export class PostsService {
     const docInstance = doc(this.firestore, 'posts', postId);
 
     updateDoc(docInstance, viewsCount).then((docRef) => {
-      console.log('Views Count Updates..!')
+      console.log('Views Count Updated..!');
     })
     .catch(err => {
       console.log(err);
